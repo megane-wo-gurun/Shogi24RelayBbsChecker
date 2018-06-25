@@ -2,7 +2,6 @@ require 'mechanize'
 require 'nokogiri'
 require 'twitter'
 require 'time'
-require 'yaml'
 require 'pry'
 
 SITE_URL = 'https://www.shogidojo.net/event/relay/23/c'
@@ -17,8 +16,8 @@ class Shogi24RelayBbsChecker
     @data_file = config['data_file']
     @twitter_config = config['twitter']
 
-  	@agent = Mechanize.new
-  	@check_time = Time.now - 60 * 60 * 24 * 3  #３日前の投稿までを対象
+    @agent = Mechanize.new
+    @check_time = Time.now - 60 * 60 * 24 * 3  #３日前の投稿までを対象
   end
 
   def check_and_tweet
@@ -26,7 +25,7 @@ class Shogi24RelayBbsChecker
 
     twitter_client do |client|
       get_new_arrival_posts.each do |post|
-        tweet = '交流サイトに投稿がありました。（' + '投稿者：' + post[:name] + 'さん）' + "\n" + SITE_URL + '/teams/view/' + post[:board_num].to_s
+        tweet = '交流サイトに投稿がありました。（' + '投稿者：' + post[:name] + 'さん）' + "\n" + SITE_URL + '/team-bbs/bbs/' + post[:board_num].to_s
         client.update(tweet)
       end
     end
@@ -43,7 +42,7 @@ class Shogi24RelayBbsChecker
   end
 
   def bbs_login
-  	  @agent.get(SITE_URL + '/users/login') do |page|
+    @agent.get(SITE_URL + '/users/login') do |page|
       response = page.form_with(:action => URI.parse(SITE_URL + '/users/login').path) do |form|
         form.field_with(:name => 'name').value = @login_name
         form.field_with(:name => 'pass').value = @login_password

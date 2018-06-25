@@ -1,0 +1,14 @@
+shogi24:
+  name: megane-wo-gurun
+  password: ********
+
+twitter:
+  consumer_key: 
+  consumer_secret: 
+  access_token: 
+  access_token_secret: 
+
+board:
+  - 6
+
+data_file: ./post_data.yaml

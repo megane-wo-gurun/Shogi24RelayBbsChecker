@@ -2,7 +2,6 @@ require 'mechanize'
 require 'nokogiri'
 require 'twitter'
 require 'time'
-require 'pry'
 
 SITE_URL = 'https://www.shogidojo.net/event/relay/23/c'
 

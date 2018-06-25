@@ -24,7 +24,10 @@ class Shogi24RelayBbsChecker
 
     twitter_client do |client|
       get_new_arrival_posts.each do |post|
-        tweet = '交流サイトに投稿がありました。（' + '投稿者：' + post[:name] + 'さん）' + "\n" + SITE_URL + '/team-bbs/bbs/' + post[:board_num].to_s
+        tweet = '交流サイトに投稿がありました。'
+        tweet += '（投稿者：' + post[:name] + 'さん）'
+        tweet += post[:body][0..3] + '... '
+        tweet += SITE_URL + '/team-bbs/bbs/' + post[:board_num].to_s
         client.update(tweet)
       end
     end

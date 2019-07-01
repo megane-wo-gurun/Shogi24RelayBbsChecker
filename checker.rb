@@ -1,11 +1,12 @@
 #! /usr/bin/env ruby
-require 'dotenv/load'
 require 'erb'
 require 'logger'
 require 'mechanize'
 require 'nokogiri'
 require 'twitter'
 require 'time'
+require 'dotenv'
+Dotenv.load(__dir__ + '/.env')
 
 class ShogiClub24RelayBbsChecker
   def initialize(config_file)

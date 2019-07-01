@@ -23,12 +23,12 @@ $ sudo cpan install XML::LibXML
 #### 環境変数を設定
 
 ```sh
-$ cp env.sample.sh env.sh
+$ cp .env.sample .env
 ```
-env.sh に24のアカウントとかTwitterのアクセストークンとかを書く。
+.env に24のアカウントとかTwitterのアクセストークンとかを書く。
 
 #### crontabを記述
 
 ```sh
-* * * * * source $HOME/24relaybbsbot/env.sh;$HOME/24relaybbsbot/checker.rb >> $HOME/24relaybbsbot/checker.log 2>&1
+* * * * * $HOME/24relaybbsbot/checker.rb >> $HOME/24relaybbsbot/checker.log 2>&1
 ```

@@ -1,4 +1,5 @@
 #! /usr/bin/env ruby
+require 'dotenv/load'
 require 'erb'
 require 'logger'
 require 'mechanize'
